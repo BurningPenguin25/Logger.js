@@ -13,7 +13,7 @@ export const loggerFile = (options) => {
 
 }
 
-    let logsArray = ""
+    let logsArray = []
 
     const  writeToFile = (levelName, message) => {
 
@@ -21,14 +21,14 @@ export const loggerFile = (options) => {
         let data = `{"level": "${levelName.toUpperCase()}", "message": "${message}", "timestamp": "${getFormatedCurrenDate()}" } \r\n`
 
         logsArray.push(data)
-
+        console.log(logsArray)
 
         if(!fs.existsSync(logsDir)){ //проверка наличия и создание папаки, если ее нет
             mkdirSync(logsDir)
         }
 }
 
-console.log(logsArray)
+
 
 
 
