@@ -5,4 +5,3 @@ loggerFile({level: 'warn', message: 'Hello world'} )
 loggerFile({level: 'warn', message: 'Hello world'} )
 
 
-process.on('SIGINT', loggerFile);
