@@ -1,8 +1,11 @@
-import moment from 'moment' //  для формата даты время
 import {fs, mkdir, mkdirSync, writeFile} from "file-system"; // файловая система
 import process from "node:process"
-
 import express from 'express'
+
+// const process2 = process()
+// const moment = moment()
+// const fs = fs()
+// const mkdirSync = mkdirSync()
 
 const exp = express()
 exp.get('/', (req, res) => {
@@ -10,32 +13,15 @@ exp.get('/', (req, res) => {
 })
 exp.listen(3002, () => console.log('Server ready'))
 
-
-//error
-//info
-//warn
-//debug
-
-//access
-//system
-//databases
-//event
-//fatal
-
-
     function loggerFileError() {
     const levelName = "error" // указанный тип ошибки(error, debug, warn)
-    const message = "error message" // если не указано сообщение, то в файл записывается 'Undentified Error'
+    const message = " sigint error message" // если не указано сообщение, то в файл записывается 'Undentified Error'
     writeToFile(levelName, message)
     }
     process.on('SIGINT', loggerFileError);
-
-    function loggerFileInfo() {
-        const levelName = "error" // указанный тип ошибки(error, debug, warn)
-        const message = "error message" // если не указано сообщение, то в файл записывается 'Undentified Error'
-        writeToFile(levelName, message)
-    }
-    process.on('SIGINT', loggerFileInfo);
+    process.on('SIGINT', loggerFileError)
+    process.on('SIGTERM', loggerFileError)
+    process.on('SIGQUIT', loggerFileError)
 
     function loggerFileWarning() {
         const levelName = "warning" // указанный тип ошибки(error, debug, warn)
@@ -58,17 +44,6 @@ exp.listen(3002, () => console.log('Server ready'))
     }
     process.on('SIGHUP', loggerFileSighup);
 
-
-
-
-
-function loggerFileSigusr1() {
-    const levelName = "sigusr" // указанный тип ошибки(error, debug, warn)
-    const message = "sigusr message" // если не указано сообщение, то в файл записывается 'Undentified Error'
-    writeToFile(levelName, message)
-}
-process.on('SIGUSR1', loggerFileSigusr1);
-
     let logsArray = []
     const  writeToFile = (levelName, message) => {
         const logsDir = './logs' // указание директория в котором моздается файл
@@ -87,13 +62,19 @@ process.on('SIGUSR1', loggerFileSigusr1);
         }
     }
 
+// const  getFormatedCurrenDate = () => {
+//     let date = new Date(),
+//         hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
+//         minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes(),
+//         seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
+// return (hours + ':' + minutes + ':' + seconds);
+// }
 
-
-
-
-const getFormatedCurrenDate = () => { // формат
-    return moment(new Date()).format(moment.HTML5_FMT.DATETIME_LOCAL_SECONDS)
+const  getFormatedCurrenDate = () => {
+    let date = new Date(),
+         YMD = date.toLocaleDateString()
+    return (YMD)
 }
 
-
+module.exports = writeToFile
 
