@@ -1,6 +1,8 @@
-import {fs, mkdir, mkdirSync, writeFile} from "file-system"; // файловая система
-import process from "node:process"
-import express from 'express'
+
+const fs = require('file-system')
+const mkdirSync = require('file-system')
+const process = require('node:process')
+const express = require('express')
 
 // const process2 = process()
 // const moment = moment()
@@ -11,7 +13,7 @@ const exp = express()
 exp.get('/', (req, res) => {
     res.send('Hello Sir')
 })
-exp.listen(3002, () => console.log('Server ready'))
+exp.listen(3003, () => console.log('Server ready'))
 
     function loggerFileError() {
     const levelName = "error" // указанный тип ошибки(error, debug, warn)
@@ -62,13 +64,6 @@ exp.listen(3002, () => console.log('Server ready'))
         }
     }
 
-// const  getFormatedCurrenDate = () => {
-//     let date = new Date(),
-//         hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
-//         minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes(),
-//         seconds = (date.getSeconds() < 10) ? '0' + date.getSeconds() : date.getSeconds();
-// return (hours + ':' + minutes + ':' + seconds);
-// }
 
 const  getFormatedCurrenDate = () => {
     let date = new Date(),
@@ -76,5 +71,6 @@ const  getFormatedCurrenDate = () => {
     return (YMD)
 }
 
-module.exports = writeToFile
+module.exports = loggerFileError
+
 

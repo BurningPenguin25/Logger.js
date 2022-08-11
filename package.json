@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "jest ",
-    "start": "node index.js"
+    "start": "node loggerFile.js"
   },
   "author": "",
   "license": "ISC",
