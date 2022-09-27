@@ -1,19 +1,7 @@
 
-const fs = require('file-system')
-const mkdirSync = require('file-system')
+const fs = require('file-system') // мокают эти пакеты все
 const process = require('node:process')
-const express = require('express')
 
-// const process2 = process()
-// const moment = moment()
-// const fs = fs()
-// const mkdirSync = mkdirSync()
-
-const exp = express()
-exp.get('/', (req, res) => {
-    res.send('Hello Sir')
-})
-exp.listen(3003, () => console.log('Server ready'))
 
     function loggerFileError() {
     const levelName = "error" // указанный тип ошибки(error, debug, warn)
@@ -53,13 +41,13 @@ exp.listen(3003, () => console.log('Server ready'))
         logsArray.push(data)
 
         if(!fs.existsSync(logsDir)){ //проверка наличия и создание папаки, если ее нет
-            mkdirSync(logsDir)
+            fs.mkdirSync(logsDir)
         } else if (logsArray.length >= 10){
             let stringLine = '';
             logsArray.forEach(logsArr => (stringLine += logsArr))
             console.log(stringLine)
             //fs.appendFileSync(`./logs/${levelName}.log`, stringLine) // создание отдельного файла
-            fs.appendFileSync(`./logs/loggerFile.log`, stringLine)
+            fs.appendFileSync(`./logs/loggerFile.log`, stringLine) // =--
             logsArray = []
         }
     }
@@ -71,6 +59,6 @@ const  getFormatedCurrenDate = () => {
     return (YMD)
 }
 
-module.exports = loggerFileError
+module.exports = writeToFile
 
 
